@@ -15,39 +15,41 @@ type Subjects = {
 type SortedSubjectsType = Array<{ [key: string]: Subject }>;
 
 class School {
-  private subjects: Subjects
-  constructor(subjects: Subjects) {
-    this.subjects = subjects
 
+  private subjectsArray: { [key: string]: Subject }[]
+
+  constructor(private subjects: Subjects) {
+
+    this.subjects = subjects;
+    this.subjectsArray = this.getSubjectsArray();
   }
 
-  getSubjectNames = (): string => {
+  public getSubjectNames = (): string => {
     return Object.keys(this.subjects).join(", ");
   };
 
-  getStudentsAndTeachers = (): { students: number; teachers: number } => {
-    return Object.values(subjects).reduce((acc, curr) => {
+  public getStudentsAndTeachers = (): { students: number; teachers: number } => {
+    return Object.values(this.subjects).reduce((acc, curr) => {
       acc.students += curr.students;
       acc.teachers += curr.teachers;
       return acc;
     }, { students: 0, teachers: 0 });
   }
 
-  getstudentCount = ():number => {
-    return Object.values(subjects).reduce((acc, curr) => {
+  public getStudentCount = ():number => {
+    return Object.values(this.subjects).reduce((acc, curr) => {
       return acc += curr.students / Object.keys(subjects).length;;
     }, 0);
   }
 
-  getsubjectsArray = (): { [key: string]: Subject }[] => {
-    return Object.entries(subjects).map(([subject, data]) => ({
+  public getSubjectsArray = (): { [key: string]: Subject }[] => {
+    return Object.entries(this.subjects).map(([subject, data]) => ({
       [subject]: data
     }));
   }
 
-  getsortedSubjects = (): SortedSubjectsType => {
-    return Object.entries(this.subjects)
-      .map(([subject, data]) => ({ [subject]: data }))
+  public getSortedSubjects = (): SortedSubjectsType => {
+    return this.subjectsArray
       .sort((a, b) => b[Object.keys(b)[0]].teachers - a[Object.keys(a)[0]].teachers);
   }
 
@@ -85,17 +87,17 @@ console.log(taskTwo)
 
 // Task 3
 //___________________________________________________________________________________
-const taskThree = school.getstudentCount()
+const taskThree = school.getStudentCount()
 console.log(taskThree)
 
 // Task 4
 //___________________________________________________________________________________
-const taskFour = school.getsubjectsArray()
+const taskFour = school.getSubjectsArray()
 console.log(taskFour)
 
 // Task 5
 //___________________________________________________________________________________
-const taskFive = school.getsortedSubjects()
+const taskFive = school.getSortedSubjects()
 console.log(taskFive)
 
 //! HW 2
