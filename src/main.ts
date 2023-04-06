@@ -12,6 +12,47 @@ type Subjects = {
   chemistry: Subject;
 };
 
+type SortedSubjectsType = Array<{ [key: string]: Subject }>;
+
+class School {
+  private subjects: Subjects
+  constructor(subjects: Subjects) {
+    this.subjects = subjects
+
+  }
+
+  getSubjectNames = (): string => {
+    return Object.keys(this.subjects).join(", ");
+  };
+
+  getStudentsAndTeachers = (): { students: number; teachers: number } => {
+    return Object.values(subjects).reduce((acc, curr) => {
+      acc.students += curr.students;
+      acc.teachers += curr.teachers;
+      return acc;
+    }, { students: 0, teachers: 0 });
+  }
+
+  getstudentCount = ():number => {
+    return Object.values(subjects).reduce((acc, curr) => {
+      return acc += curr.students / Object.keys(subjects).length;;
+    }, 0);
+  }
+
+  getsubjectsArray = (): { [key: string]: Subject }[] => {
+    return Object.entries(subjects).map(([subject, data]) => ({
+      [subject]: data
+    }));
+  }
+
+  getsortedSubjects = (): SortedSubjectsType => {
+    return Object.entries(this.subjects)
+      .map(([subject, data]) => ({ [subject]: data }))
+      .sort((a, b) => b[Object.keys(b)[0]].teachers - a[Object.keys(a)[0]].teachers);
+  }
+
+};
+
 const subjects: Subjects = {
   mathematics: {
       students: 200,
@@ -30,49 +71,32 @@ const subjects: Subjects = {
       teachers: 3
   }
 }
+const school = new School(subjects)
 
 // Task 1
 //___________________________________________________________________________________
-
-const subjectNames: string = Object.keys(subjects).join(", ");
-console.log(subjectNames);
-
+const taskOne = school.getSubjectNames()
+console.log(taskOne)
 
 // Task 2
 //___________________________________________________________________________________
-const studentsAndTeachers: { students: number; teachers: number } = Object.values(subjects).reduce((acc, curr) => {
-  acc.students += curr.students;
-  acc.teachers += curr.teachers;
-  return acc;
-}, { students: 0, teachers: 0 });
-
-console.log(studentsAndTeachers);
+const taskTwo = school.getStudentsAndTeachers()
+console.log(taskTwo)
 
 // Task 3
 //___________________________________________________________________________________
-const studentCount: number  = Object.values(subjects).reduce((acc, curr) => {
-  return acc += curr.students;
-}, 0);
-
-const averageStudentCount: number = studentCount / Object.keys(subjects).length;
-console.log(averageStudentCount);
+const taskThree = school.getstudentCount()
+console.log(taskThree)
 
 // Task 4
 //___________________________________________________________________________________
-const subjectsArray: { [key: string]: Subject }[] = Object.entries(subjects).map(([subject, data]) => ({
-  [subject]: data
-}));
-
-console.log(subjectsArray);
+const taskFour = school.getsubjectsArray()
+console.log(taskFour)
 
 // Task 5
 //___________________________________________________________________________________
-type SortedSubjectsType = Array<{ [key: string]: Subject }>;
-const sortedSubjects: SortedSubjectsType = Object.entries(subjects)
-  .map(([subject, data]) => ({ [subject]: data }))
-  .sort((a, b) => b[Object.keys(b)[0]].teachers - a[Object.keys(a)[0]].teachers);
-
-console.log(sortedSubjects);
+const taskFive = school.getsortedSubjects()
+console.log(taskFive)
 
 //! HW 2
 //!_______________________________________________________________________________________
