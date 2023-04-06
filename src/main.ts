@@ -76,14 +76,30 @@ console.log(sortedSubjects);
 
 //! HW 2
 //!_______________________________________________________________________________________
-type Faculty = {
+type FacultyMovie = {
   id: number;
-  faculty: string;
-  subjects: Array<string>;
-  countStudents: number;
-};
+  faculty?: string;
+  subjects?: Array<string>;
+  countStudents?: number;
+  title?: string;
+  year?: number;
+  released?: string;
+  runtime?: string;
+  genre?: string[];
+  director?: string;
+  writer?: string;
+  actors?: Array<string>;
+  plot?: string;
+  country?: string;
+  poster?: string;
+  imdbRating?: number;
+  imdbVotes?: number;
+  type?: string;
+  boxOffice?: string;
+  production?: string;
+}
 
-const faculties: Faculty[] = [
+const faculties: FacultyMovie[] = [
   {
     id: 1,
     faculty: 'History department',
@@ -110,27 +126,7 @@ const faculties: Faculty[] = [
   }
 ];
 
-type Movie = {
-  id: number;
-  title: string;
-  year: number;
-  released: string;
-  runtime: string;
-  genre: string[];
-  director: string;
-  writer: string;
-  actors: Array<string>;
-  plot: string;
-  country: string;
-  poster: string;
-  imdbRating: number;
-  imdbVotes: number;
-  type: string;
-  boxOffice: string;
-  production: string;
-};
-
-const movies: Movie[] = [
+const movies: FacultyMovie[] = [
   {
     id: 1,
     title: 'Black Widow',
