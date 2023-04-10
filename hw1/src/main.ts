@@ -14,7 +14,15 @@ type Subjects = {
 
 type SortedSubjectsType = Array<{ [key: string]: Subject }>;
 
-class School {
+interface SchoolInterface {
+  getSubjectNames: () => string;
+  getStudentsAndTeachers: () => { students: number; teachers: number };
+  getStudentCount: () => number;
+  getSubjectsArray: () => { [key: string]: Subject }[];
+  getSortedSubjects: () => SortedSubjectsType;
+}
+
+class School implements SchoolInterface {
 
   private subjectsArray: { [key: string]: Subject }[]
 
@@ -103,12 +111,12 @@ console.log(taskFive)
 //! HW 2
 //!_______________________________________________________________________________________
 type FacultyMovie = {
-  id: number;
+  readonly id: number;
   faculty?: string;
   subjects?: Array<string>;
   countStudents?: number;
   title?: string;
-  year?: number;
+  year?: number | string;
   released?: string;
   runtime?: string;
   genre?: string[];
