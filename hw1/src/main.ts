@@ -12,19 +12,23 @@ type Subjects = {
   chemistry: Subject;
 };
 
+type getSubjectNames = string | never;
+type getStudentsAndTeachers = { students: number; teachers: number } | never;
+type getStudentCount = number;
+type getSubjectsArray = { [key: string]: Subject }[];;
 type SortedSubjectsType = Array<{ [key: string]: Subject }>;
 
 interface SchoolInterface {
-  getSubjectNames: () => string;
-  getStudentsAndTeachers: () => { students: number; teachers: number };
-  getStudentCount: () => number;
-  getSubjectsArray: () => { [key: string]: Subject }[];
+  getSubjectNames: () => getSubjectNames;
+  getStudentsAndTeachers: () => getStudentsAndTeachers;
+  getStudentCount: () => getStudentCount;
+  getSubjectsArray: () => getSubjectsArray;
   getSortedSubjects: () => SortedSubjectsType;
 }
 
 class School implements SchoolInterface {
 
-  private subjectsArray: { [key: string]: Subject }[]
+  private subjectsArray: getSubjectsArray
 
   constructor(private subjects: Subjects) {
 
@@ -32,31 +36,49 @@ class School implements SchoolInterface {
     this.subjectsArray = this.getSubjectsArray();
   }
 
-  public getSubjectNames = (): string => {
-    return Object.keys(this.subjects).join(", ");
+  private isSubjectsValid = (subject: any): subject is Subjects => {
+    const subjectKeys = Object.keys(subject);
+
+    return (
+      subject !== null &&
+      typeof subject === 'object' &&
+      subjectKeys.every(key => Object.keys(this.subjects).includes(key))
+    );
   };
 
-  public getStudentsAndTeachers = (): { students: number; teachers: number } => {
-    return Object.values(this.subjects).reduce((acc, curr) => {
-      acc.students += curr.students;
-      acc.teachers += curr.teachers;
-      return acc;
-    }, { students: 0, teachers: 0 });
+  public getSubjectNames = () => {
+    if (!this.isSubjectsValid(this.subjects)) {
+      throw new Error('Недопустимый тип');
+    }else{
+      return Object.keys(this.subjects).join(", ");
+    }
+  };
+
+  public getStudentsAndTeachers = () => {
+    if (!this.isSubjectsValid(this.subjects)) {
+      throw new Error('Недопустимый тип');
+    }else{
+      return Object.values(this.subjects).reduce((acc, curr) => {
+        acc.students += curr.students;
+        acc.teachers += curr.teachers;
+        return acc;
+      }, { students: 0, teachers: 0 });
+    }
   }
 
-  public getStudentCount = ():number => {
+  public getStudentCount = () => {
     return Object.values(this.subjects).reduce((acc, curr) => {
-      return acc += curr.students / Object.keys(subjects).length;;
+      return acc += curr.students / Object.keys(this.subjects).length;;
     }, 0);
   }
 
-  public getSubjectsArray = (): { [key: string]: Subject }[] => {
+  public getSubjectsArray = () => {
     return Object.entries(this.subjects).map(([subject, data]) => ({
       [subject]: data
     }));
   }
 
-  public getSortedSubjects = (): SortedSubjectsType => {
+  public getSortedSubjects = () => {
     return this.subjectsArray
       .sort((a, b) => b[Object.keys(b)[0]].teachers - a[Object.keys(a)[0]].teachers);
   }
