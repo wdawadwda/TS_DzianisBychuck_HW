@@ -1,22 +1,21 @@
 //! HW 1
 //!_______________________________________________________________________________________
-type Subject = {
-  students: number;
-  teachers: number;
+type Subject<T extends number> = {
+  students: T;
+  teachers: T;
 };
 
+type SubjectKey = 'mathematics' | 'biology' | 'geography' | 'chemistry' | 'english' | 'russian language' | 'belarusian language' | 'history';
+
 type Subjects = {
-  mathematics: Subject;
-  biology: Subject;
-  geography: Subject;
-  chemistry: Subject;
+  [key in SubjectKey]?: Subject<number>;
 };
 
 type getSubjectNames = string | never;
 type getStudentsAndTeachers = { students: number; teachers: number } | never;
 type getStudentCount = number;
-type getSubjectsArray = { [key: string]: Subject }[];;
-type SortedSubjectsType = Array<{ [key: string]: Subject }>;
+type getSubjectsArray = { [key: string]: Subject<number> }[];;
+type SortedSubjectsType = Array<{ [key: string]: Subject<number> }>;
 
 interface SchoolInterface {
   getSubjectNames: () => getSubjectNames;
@@ -28,7 +27,7 @@ interface SchoolInterface {
 
 class School implements SchoolInterface {
 
-  private subjectsArray: getSubjectsArray
+  private subjectsArray: getSubjectsArray;
 
   constructor(private subjects: Subjects) {
 
@@ -37,12 +36,9 @@ class School implements SchoolInterface {
   }
 
   private isSubjectsValid = (subject: any): subject is Subjects => {
-    const subjectKeys = Object.keys(subject);
-
     return (
       subject !== null &&
-      typeof subject === 'object' &&
-      subjectKeys.every(key => Object.keys(this.subjects).includes(key))
+      typeof subject === 'object'
     );
   };
 
@@ -102,33 +98,57 @@ const subjects: Subjects = {
       students: 100,
       teachers: 3
   }
-}
+};
+
+const subjects2: Subjects = {
+  english: {
+      students: 150,
+      teachers: 5
+  },
+  'russian language': {
+      students: 30,
+      teachers: 2
+  },
+  'belarusian language': {
+      students: 500,
+      teachers: 35
+  },
+  history: {
+      students: 200,
+      teachers: 15
+  }
+};
 const school = new School(subjects)
+const school2 = new School(subjects2)
 
 // Task 1
 //___________________________________________________________________________________
 const taskOne = school.getSubjectNames()
-console.log(taskOne)
+const taskOneSubj2 = school2.getSubjectNames()
+console.log(`Объект 1: %s\nОбъект 2: %s`,taskOne, taskOneSubj2)
 
 // Task 2
 //___________________________________________________________________________________
 const taskTwo = school.getStudentsAndTeachers()
-console.log(taskTwo)
+const taskTwoSubj2 = school2.getStudentsAndTeachers()
+console.log(`Объект 1: %o\nОбъект 2: %o`,taskTwo, taskTwoSubj2)
 
 // Task 3
 //___________________________________________________________________________________
 const taskThree = school.getStudentCount()
-console.log(taskThree)
-
+const taskThreeSubj2 = school2.getStudentCount()
+console.log(`Объект 1: %d\nОбъект 2: %d`,taskThree, taskThreeSubj2)
 // Task 4
 //___________________________________________________________________________________
 const taskFour = school.getSubjectsArray()
-console.log(taskFour)
+const taskFourSubj2 = school2.getSubjectsArray()
+console.log(`Объект 1: %o\nОбъект 2: %o`,taskFour, taskFourSubj2)
 
 // Task 5
 //___________________________________________________________________________________
 const taskFive = school.getSortedSubjects()
-console.log(taskFive)
+const taskFiveSubj2 = school2.getSortedSubjects()
+console.log(`Объект 1: %o\nОбъект 2: %o`,taskFive, taskFiveSubj2)
 
 //! HW 2
 //!_______________________________________________________________________________________
