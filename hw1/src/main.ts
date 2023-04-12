@@ -4,7 +4,6 @@ type Subject<T extends number> = {
   students: T;
   teachers: T;
 };
-
 type SubjectKey = 'mathematics' | 'biology' | 'geography' | 'chemistry' | 'english' | 'russian language' | 'belarusian language' | 'history';
 
 type Subjects = {
@@ -43,22 +42,22 @@ class School implements SchoolInterface {
   };
 
   public getSubjectNames = () => {
-    if (!this.isSubjectsValid(this.subjects)) {
-      throw new Error('Недопустимый тип');
-    }else{
+    if (this.isSubjectsValid(this.subjects)) {
       return Object.keys(this.subjects).join(", ");
+    }else{
+      throw new Error('Недопустимый тип');
     }
   };
 
   public getStudentsAndTeachers = () => {
-    if (!this.isSubjectsValid(this.subjects)) {
-      throw new Error('Недопустимый тип');
-    }else{
+    if (this.isSubjectsValid(this.subjects)) {
       return Object.values(this.subjects).reduce((acc, curr) => {
         acc.students += curr.students;
         acc.teachers += curr.teachers;
         return acc;
       }, { students: 0, teachers: 0 });
+    }else{
+      throw new Error('Недопустимый тип');
     }
   }
 
