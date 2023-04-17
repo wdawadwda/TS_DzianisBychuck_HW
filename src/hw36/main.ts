@@ -175,3 +175,66 @@ function SearchByYear(movies: Movie[], year: number = 0): Movies | string{
 }
 
 console.log(SearchByYear(otherMovies, 2021));
+
+// Task 6
+//___________________________________________________________________________________
+
+function SearchByTitle(movies: Movie[], search: string = ''):Movies | string{
+    if (search) {
+        const filteredMovies = movies.filter((movie)=> movie.title.toLowerCase().includes(search.toLowerCase()));
+        return filteredMovies.length > 0 ? filteredMovies : "Фильмов нет"; 
+    }else{
+        return "Введите название фильма";
+    }
+}
+
+console.log(SearchByTitle(otherMovies, 'Potter'));
+
+// Task 7
+//___________________________________________________________________________________
+
+function SearchByTitleAndPlot(movies: Movies, search: string = ''):Movies | string{
+    if (search) {
+        const filteredMovies = movies.filter((movie) => 
+        movie.title.toLowerCase().includes(search.toLowerCase()) || 
+        movie.plot.toLowerCase().includes(search.toLowerCase()));
+        return filteredMovies.length > 0 ? filteredMovies : "Фильмов нет"; 
+    }else{
+        return "Введите название фильма или сюжет";
+    }
+}
+
+console.log(SearchByTitleAndPlot(otherMovies, 'school of wizardry'));
+
+// Task 8
+//___________________________________________________________________________________
+
+function filterMoviesByField<T>(movies: Movies, fieldName: keyof Movie, fieldValue: T): Movies {
+    return movies.filter(movie => {
+        const value = movie[fieldName];
+        if (typeof value === 'string') {
+            return value.includes(fieldValue as string);
+        }
+        else if(Array.isArray(value) && value.every(item => typeof item === 'string')){
+            return value.includes(fieldValue as string)
+        }
+        else{
+            return value === fieldValue;
+        }
+    });
+}
+
+const filteredMovies = filterMoviesByField(otherMovies, 'title', 'Harry Potter');
+console.log(filteredMovies);
+
+const filteredMoviesByYear = filterMoviesByField(otherMovies, 'year', 2021);
+console.log(filteredMoviesByYear);
+
+const filteredMoviesByGenre = filterMoviesByField(otherMovies, 'genre', 'Fantasy');
+console.log(filteredMoviesByGenre);
+
+const filteredMoviesByBoxOffice = filterMoviesByField(otherMovies, 'boxOffice', '$460,998,507');
+console.log(filteredMoviesByBoxOffice);
+
+const filteredMoviesByActor = filterMoviesByField(otherMovies, 'actors', 'Daniel Radcliffe');
+console.log(filteredMoviesByActor);
