@@ -1,3 +1,4 @@
+export {}
 //! HW 2
 //!_______________________________________________________________________________________
 type FacultyMovie = {
@@ -90,3 +91,4 @@ const movies: FacultyMovie[] = [
     production: 'Heyday Films, Moving Picture Company, Warner Bros.'
 }
 ];
+console.log(movies, faculties)
