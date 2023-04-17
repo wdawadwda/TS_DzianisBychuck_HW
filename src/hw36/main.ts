@@ -209,13 +209,21 @@ console.log(SearchByTitleAndPlot(otherMovies, 'school of wizardry'));
 // Task 8
 //___________________________________________________________________________________
 
+function isArrayOfStrings(value: unknown): value is string[] {
+    return Array.isArray(value) && value.every(item => typeof item === 'string');
+}
+
+function isString(value: unknown): value is string {
+    return typeof value === 'string';
+}
+
 function filterMoviesByField<T extends string | number | string[]>(movies: Movies, fieldName: keyof Movie, fieldValue: T): Movies {
     return movies.filter(movie => {
         const value = movie[fieldName];
-        if (typeof value === 'string') {
+        if (isString(value)) {
             return value.includes(fieldValue as string);
         }
-        else if(Array.isArray(value) && value.every(item => typeof item === 'string')){
+        else if(isArrayOfStrings(value)){
             return value.includes(fieldValue as string)
         }
         else{
