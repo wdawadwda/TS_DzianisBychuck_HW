@@ -209,7 +209,7 @@ console.log(SearchByTitleAndPlot(otherMovies, 'school of wizardry'));
 // Task 8
 //___________________________________________________________________________________
 
-function filterMoviesByField<T>(movies: Movies, fieldName: keyof Movie, fieldValue: T): Movies {
+function filterMoviesByField<T extends string | number | string[]>(movies: Movies, fieldName: keyof Movie, fieldValue: T): Movies {
     return movies.filter(movie => {
         const value = movie[fieldName];
         if (typeof value === 'string') {
