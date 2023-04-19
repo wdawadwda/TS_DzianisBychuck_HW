@@ -25,9 +25,9 @@ Exercise:
 */
 
 export type User = {
-    name: string,
-    age: number,
-    occupation: string
+  name: string;
+  age: number;
+  occupation: string;
 };
 
 export const users: User[] = [
@@ -43,7 +43,7 @@ export const users: User[] = [
   }
 ];
 
-export function logPerson(user: User):string {
+export function logPerson(user: User): string {
   return ` - ${user.name}, ${user.age}`;
 }
 
