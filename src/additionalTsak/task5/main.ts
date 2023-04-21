@@ -82,7 +82,7 @@ export function logPerson(person: Person) {
   if (isUser(person)) {
     additionalInformation = person.occupation;
   }
-  console.debug(` - ${person.name}, ${person.age}, ${additionalInformation}`);
+  console.warn(` - ${person.name}, ${person.age}, ${additionalInformation}`);
   return person;
 }
 
@@ -98,8 +98,8 @@ export function filterUsers(
   });
 }
 
-console.debug('Users of age 23:');
-console.debug(
+console.warn('Users of age 23:');
+console.warn(
   filterUsers(persons, {
     age: 23
   }).map(logPerson)

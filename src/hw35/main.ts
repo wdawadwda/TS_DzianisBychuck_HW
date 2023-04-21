@@ -50,7 +50,7 @@ function nameString(users: Users): string {
   }, '');
 }
 
-console.debug(nameString(users));
+console.warn(nameString(users));
 
 // Task 2
 //___________________________________________________________________________________
@@ -61,7 +61,7 @@ function totalCars(users: Users): number {
   }, 0);
 }
 
-console.debug(totalCars(users));
+console.warn(totalCars(users));
 
 // Task 3
 //___________________________________________________________________________________
@@ -72,7 +72,7 @@ function isEducation(users: Users): Array<User> {
   });
 }
 
-console.debug(isEducation(users));
+console.warn(isEducation(users));
 
 // Task 4
 //___________________________________________________________________________________
@@ -83,7 +83,7 @@ function isanimals(users: Users): User[] {
   });
 }
 
-console.debug(isanimals(users));
+console.warn(isanimals(users));
 
 // Task 5
 //___________________________________________________________________________________
@@ -92,4 +92,4 @@ function carBrand(users: Users): string {
   return users.flatMap((user) => user.cars ?? []).join(', ');
 }
 
-console.debug(carBrand(users));
+console.warn(carBrand(users));

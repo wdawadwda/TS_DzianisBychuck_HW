@@ -53,8 +53,8 @@ export function logPerson(user: Person): string {
   return ` - ${user.name}, ${user.age}`;
 }
 
-console.debug('Persons:');
-console.debug(persons.map(logPerson));
+console.warn('Persons:');
+console.warn(persons.map(logPerson));
 
 // In case if you are stuck:
 // https://www.typescriptlang.org/docs/handbook/2/types-from-types.html

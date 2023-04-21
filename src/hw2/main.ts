@@ -92,4 +92,4 @@ const movies: FacultyMovie[] = [
     production: 'Heyday Films, Moving Picture Company, Warner Bros.'
   }
 ];
-console.debug(movies, faculties);
+console.warn(movies, faculties);

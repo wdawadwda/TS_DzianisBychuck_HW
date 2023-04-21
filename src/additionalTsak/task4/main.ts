@@ -57,11 +57,11 @@ export function logPerson(person: Person): string {
   return ` - ${person.name}, ${person.age}, ${additionalInformation}`;
 }
 
-console.debug('Admins:');
-console.debug(persons.filter(isAdmin).map(logPerson));
+console.warn('Admins:');
+console.warn(persons.filter(isAdmin).map(logPerson));
 
-console.debug('Users:');
-console.debug(persons.filter(isUser).map(logPerson));
+console.warn('Users:');
+console.warn(persons.filter(isUser).map(logPerson));
 
 // In case if you are stuck:
 // https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates

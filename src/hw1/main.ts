@@ -131,27 +131,27 @@ const school2 = new School(subjects2);
 //___________________________________________________________________________________
 const taskOne = school.getSubjectNames();
 const taskOneSubj2 = school2.getSubjectNames();
-console.debug(`Объект 1: %s\nОбъект 2: %s`, taskOne, taskOneSubj2);
+console.warn(`Объект 1: %s\nОбъект 2: %s`, taskOne, taskOneSubj2);
 
 // Task 2
 //___________________________________________________________________________________
 const taskTwo = school.getStudentsAndTeachers();
 const taskTwoSubj2 = school2.getStudentsAndTeachers();
-console.debug(`Объект 1: %o\nОбъект 2: %o`, taskTwo, taskTwoSubj2);
+console.warn(`Объект 1: %o\nОбъект 2: %o`, taskTwo, taskTwoSubj2);
 
 // Task 3
 //___________________________________________________________________________________
 const taskThree = school.getStudentCount();
 const taskThreeSubj2 = school2.getStudentCount();
-console.debug(`Объект 1: %d\nОбъект 2: %d`, taskThree, taskThreeSubj2);
+console.warn(`Объект 1: %d\nОбъект 2: %d`, taskThree, taskThreeSubj2);
 // Task 4
 //___________________________________________________________________________________
 const taskFour = school.getSubjectsArray();
 const taskFourSubj2 = school2.getSubjectsArray();
-console.debug(`Объект 1: %o\nОбъект 2: %o`, taskFour, taskFourSubj2);
+console.warn(`Объект 1: %o\nОбъект 2: %o`, taskFour, taskFourSubj2);
 
 // Task 5
 //___________________________________________________________________________________
 const taskFive = school.getSortedSubjects();
 const taskFiveSubj2 = school2.getSortedSubjects();
-console.debug(`Объект 1: %o\nОбъект 2: %o`, taskFive, taskFiveSubj2);
+console.warn(`Объект 1: %o\nОбъект 2: %o`, taskFive, taskFiveSubj2);

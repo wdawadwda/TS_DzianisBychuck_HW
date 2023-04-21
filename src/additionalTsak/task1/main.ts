@@ -47,8 +47,8 @@ export function logPerson(user: User): string {
   return ` - ${user.name}, ${user.age}`;
 }
 
-console.debug('Users:');
-console.debug(users.map(logPerson));
+console.warn('Users:');
+console.warn(users.map(logPerson));
 
 /* In case if you are stuck:
 // https://www.typescriptlang.org/docs/handbook/2/objects.html

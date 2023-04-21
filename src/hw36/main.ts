@@ -138,7 +138,7 @@ function uniqueMoviesGenre(movies: Movies): ArrayString {
   return [...uniqueGenres];
 }
 
-console.debug(uniqueMoviesGenre(otherMovies));
+console.warn(uniqueMoviesGenre(otherMovies));
 
 // Task 2
 //___________________________________________________________________________________
@@ -148,7 +148,7 @@ function uniqueActors(movies: Movies): ArrayString {
   return [...uniqueActors];
 }
 
-console.debug(uniqueActors(otherMovies));
+console.warn(uniqueActors(otherMovies));
 
 // Task 3
 //___________________________________________________________________________________
@@ -156,7 +156,7 @@ console.debug(uniqueActors(otherMovies));
 function sortFilm(movies: Movies): Movies {
   return [...movies].sort((a, b) => b.imdbRating - a.imdbRating);
 }
-console.debug(sortFilm(otherMovies));
+console.warn(sortFilm(otherMovies));
 
 // Task 4
 //___________________________________________________________________________________
@@ -169,7 +169,7 @@ function abbreviatedMovie(movies: Movie[]): AbbreviatedMovie[] {
   }));
 }
 
-console.debug(abbreviatedMovie(otherMovies));
+console.warn(abbreviatedMovie(otherMovies));
 
 // Task 5
 //___________________________________________________________________________________
@@ -178,7 +178,7 @@ function SearchByYear(movies: Movie[], year = 0): Movies | string {
   return filteredMovies.length > 0 ? filteredMovies : 'Фильмов нет';
 }
 
-console.debug(SearchByYear(otherMovies, 2021));
+console.warn(SearchByYear(otherMovies, 2021));
 
 // Task 6
 //___________________________________________________________________________________
@@ -194,7 +194,7 @@ function SearchByTitle(movies: Movie[], search = ''): Movies | string {
   }
 }
 
-console.debug(SearchByTitle(otherMovies, 'Potter'));
+console.warn(SearchByTitle(otherMovies, 'Potter'));
 
 // Task 7
 //___________________________________________________________________________________
@@ -212,7 +212,7 @@ function SearchByTitleAndPlot(movies: Movies, search = ''): Movies | string {
   }
 }
 
-console.debug(SearchByTitleAndPlot(otherMovies, 'school of wizardry'));
+console.warn(SearchByTitleAndPlot(otherMovies, 'school of wizardry'));
 
 // Task 8
 //___________________________________________________________________________________
@@ -249,28 +249,28 @@ const filteredMovies = filterMoviesByField(
   'title',
   'Harry Potter'
 );
-console.debug(filteredMovies);
+console.warn(filteredMovies);
 
 const filteredMoviesByYear = filterMoviesByField(otherMovies, 'year', 2021);
-console.debug(filteredMoviesByYear);
+console.warn(filteredMoviesByYear);
 
 const filteredMoviesByGenre = filterMoviesByField(
   otherMovies,
   'genre',
   'Fantasy'
 );
-console.debug(filteredMoviesByGenre);
+console.warn(filteredMoviesByGenre);
 
 const filteredMoviesByBoxOffice = filterMoviesByField(
   otherMovies,
   'boxOffice',
   '$460,998,507'
 );
-console.debug(filteredMoviesByBoxOffice);
+console.warn(filteredMoviesByBoxOffice);
 
 const filteredMoviesByActor = filterMoviesByField(
   otherMovies,
   'actors',
   'Daniel Radcliffe'
 );
-console.debug(filteredMoviesByActor);
+console.warn(filteredMoviesByActor);

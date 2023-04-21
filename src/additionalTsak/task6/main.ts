@@ -83,11 +83,11 @@ export function filterPersons(
 export const usersOfAge23 = filterPersons(persons, 'user', { age: 23 });
 export const adminsOfAge23 = filterPersons(persons, 'admin', { age: 23 });
 
-console.debug('Users of age 23:');
-console.debug(usersOfAge23.map(logPerson));
+console.warn('Users of age 23:');
+console.warn(usersOfAge23.map(logPerson));
 
-console.debug('Admins of age 23:');
-console.debug(adminsOfAge23.map(logPerson));
+console.warn('Admins of age 23:');
+console.warn(adminsOfAge23.map(logPerson));
 
 // In case if you are stuck:
 // https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads
